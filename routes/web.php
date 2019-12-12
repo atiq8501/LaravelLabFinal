@@ -11,8 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function (Request $req) {
+    if(session()->has('username')){
+        if(session()->get('type')=='1')
+            return redirect()->route('admin.index');
+        else 
+            return redirect()->route('customer.index');
+    }
 });
 
 
